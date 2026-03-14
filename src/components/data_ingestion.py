@@ -5,6 +5,7 @@ from src.exception import CustomException
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformationConfig, DataTransformer
 
 
 @dataclass
@@ -46,4 +47,7 @@ class DataIngestor:
 
 if __name__ == "__main__":
     ingestor = DataIngestor()
-    ingestor.initiate_data_ingestion()
+    train_data_path, test_data_path = ingestor.initiate_data_ingestion()
+
+    transformer = DataTransformer()
+    transformer.initiate_data_transformation(train_data_path, test_data_path)
